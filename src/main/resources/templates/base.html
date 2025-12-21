@@ -12,7 +12,16 @@
 
 <body>
     <!-- common header -->
-    <div th:replace="navbar :: navbar"></div>
+
+     <!-- if user logged in : navbar -->
+     <div th:if="${loggedInUser}">
+        <div th:replace="~{user/user_navbar::user-navbar}"></div>
+     </div>
+
+     <!-- if user not logged in : navbar -->
+     <div th:unless="${loggedInUser}">
+        <div th:replace="~{navbar::navbar}"></div>
+     </div>
     <!-- main content -->
     <div class="p-4">
         <section th:replace="${content}"></section>
