@@ -3,7 +3,6 @@ package com.scm.scm20.services;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 import com.scm.scm20.entities.Contact;
 import com.scm.scm20.entities.User;
@@ -26,7 +25,11 @@ public interface ContactService {
     void delete(String id);
 
     // search contact
-    List<Contact> search(String name, String email, String phoneNumber);
+    Page<Contact> searchByName(String nameKeyword, int size, int page, String sortBy, String order, User user);
+
+    Page<Contact> searchByEmail(String emailKeyword, int size, int page, String sortBy, String order, User user);
+
+    Page<Contact> searchByPhoneNumber(String phoneNumberKeyword, int size, int page, String sortBy, String order, User user);
 
     // get contacts by userId
     List<Contact> getByUserId(String id);
